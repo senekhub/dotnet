@@ -5,12 +5,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-
+using TodoApi.Models;
 namespace TodoApi.Services{
     public class JwtAuthenticationManager : IJwtAuthenticationManager
     {
         private readonly IDictionary<string,string> users=new Dictionary<string,string>{
-            {"test1","password1"},
+            {"user","password"},
             {"test2","password2"}
         };
         private readonly string key;
@@ -18,9 +18,9 @@ namespace TodoApi.Services{
         {
             this.key=key;
         }
-        public string Authenticate(string username, string password)
+        public string Authenticate(Usuario usuario)
         {
-            if (!users.Any(u=>u.Key==username && u.Value==password))
+            if (!users.Any(u=>u.Key==usuario.Name && u.Value==usuario.Password))
             {
                 return null;
             }
@@ -28,7 +28,8 @@ namespace TodoApi.Services{
             var tokenKey=Encoding.ASCII.GetBytes(key);
             var tokenDescriptor=new SecurityTokenDescriptor(){
                 Subject=new ClaimsIdentity(new Claim[]{
-                    new Claim(ClaimTypes.Name,username)
+                    new Claim(ClaimTypes.Name,usuario.Name),
+                    new Claim(ClaimTypes.Role,usuario.Role) 
                 }),
                 Expires=DateTime.UtcNow.AddHours(1),
                 SigningCredentials=new SigningCredentials(

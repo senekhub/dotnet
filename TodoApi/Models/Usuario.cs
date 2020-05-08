@@ -9,7 +9,12 @@ namespace TodoApi.Models{
 
         [BsonElement]
         public string Name{get;set;}
+
+        [BsonElement]
+        public string Password{get;set;}
         [BsonElement]
         public bool Completed{get;set;}
+        [BsonElement]
+        public string Role{get;set;}
     }
 }

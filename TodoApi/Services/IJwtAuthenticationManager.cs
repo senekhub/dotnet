@@ -1,6 +1,8 @@
 using System;
+using TodoApi.Models;
+
 namespace TodoApi.Services{
     public interface IJwtAuthenticationManager{
-        string Authenticate(string username, string password);
+        string Authenticate(Usuario usuario);
     }
 }

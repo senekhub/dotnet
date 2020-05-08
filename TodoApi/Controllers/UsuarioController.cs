@@ -15,15 +15,15 @@ namespace TodoApi.Controllers{
         {
             _service=service;
         }
+
         [HttpGet]
-        public ActionResult<List<Usuario>> Get(){
-            _service.Create(new Usuario(){
-                Name="oscar",
-                Completed=true
-            });
+        [Authorize(Roles=Role.Admin)]
+        public ActionResult<List<Usuario>> Get(){            
             return _service.Get();
         }
+
         [HttpPost]
+        [Authorize(Roles=Role.User)]
         public ActionResult<Usuario> Create(Usuario usuario){
             _service.Create(usuario);
             return usuario; 

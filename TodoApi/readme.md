@@ -13,6 +13,8 @@ docker pull mongo
 
 docker-compose up -d
 
-Microsoft.AspNetCore.Authentication
-System.IdentityModel.Tokens.Jwt
-Microsoft.AspNetCore.Authentication.JwtBearer
+* Microsoft.AspNetCore.Authentication
+* System.IdentityModel.Tokens.Jwt
+* Microsoft.AspNetCore.Authentication.JwtBearer
+
+https://jasonwatmore.com/post/2019/10/16/aspnet-core-3-role-based-authorization-tutorial-with-example-api

@@ -18,9 +18,9 @@ namespace TodoApi.Controllers{
             this.jwtAuthenticationManager=jwtAuthenticationManager;
         }
         [AllowAnonymous]
-        [HttpPost("authenticate")]
-        public IActionResult Authenticate(){
-            var token=jwtAuthenticationManager.Authenticate("test1","password1");
+        [HttpPost]
+        public IActionResult Authenticate(Usuario usuario){
+            var token=jwtAuthenticationManager.Authenticate(usuario);
             if (token==null)
                 return Unauthorized();
             return Ok(token);
